@@ -75,14 +75,22 @@ nano /etc/hosts
 ::1             localhost
 127.0.1.1       arch.localhost arch
 # Guardamos y salimos
-#Ponemos contraseña al root
-passwd
+```
+Ponemos contraseña al root `passwd`
+
+### Descargamos Network Manager
+```
 pacman -S networkmanager
 systemctl enable NetworkManager
-#Instalamos Grub
+```
+### Instalamos y configuramos Grub
+```
 pacman -S grub efibootmgr
 grub-install --target=x86_64-efi --efi-directory=/boot
 grub-mkconfig -o /boot/grub/grub.cfg
+```
+### Añadimos un usuario
+```
 useradd -m <nombre-usuario>
 passwd <nombre-usuario>
 usermod -aD wheel,video,audio,storage <nombre-usuario>
@@ -91,14 +99,15 @@ nano /etc/sudoers
 # Descomentamos %wheel ALL=(ALL) ALL y guardamos
 exit
 exit
+```
+### Demontamos y apagamos
+```
 umount -R /mnt
 shutdown now
-# Sacamos el usb y volvemos a arrancar
-nmcli device wifi list
-nmcli device wifi connect <nombre-red> password <contraseña>
-sudo pacman -S xorg
-
-
 ```
 
-
+### Sacamos el usb y volvemos a arrancar
+```
+nmcli device wifi list
+nmcli device wifi connect <nombre-red> password <contraseña>
+```
