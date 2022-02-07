@@ -1,0 +1,6 @@
+#!/bin/bash
+picom &
+#Keyboard
+setxkbmap es &
+# Wallpaper
+feh --bg-scale /home/kaikie/ovdotfiles/wallpapers/among-trees.jpg &
