@@ -17,7 +17,8 @@ echo "Instalando entorno de escritorio"
 pacman -S qtile lightdm xorg-server -y
 systemctl enable lightdm
 pacman -S lightdm-gtk-greeter -y
-pacman -S xterm code feh -y
+pacman -S xterm code feh picom -y
+mv .xsession /home/kaikie
 
 echo "Configurando qtile"
 
