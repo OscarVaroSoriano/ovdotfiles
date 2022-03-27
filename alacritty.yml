@@ -63,7 +63,7 @@ window:
   #startup_mode: Windowed
 
   # Window title
-  title: Alacritty@Garuda
+  title: Alacritty
 
   # Window class (Linux/BSD only):
   class:
@@ -324,7 +324,7 @@ live_config_reload: true
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
 shell:
-  program: /usr/bin/fish
+  program: /usr/bin/zsh
 #  args:
 #    - --login
 

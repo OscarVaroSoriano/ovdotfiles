@@ -5,7 +5,7 @@
 echo "Actualizando el sistema"
 pacman -Syu -y
 echo "Instalando software"
-pacman -S rofi base-devel firefox alacritty vim ranger -y
+pacman -S rofi base-devel firefox alacritty vim ranger binutils -y
 echo "Instalamos yay para descargar desde AUR"
 cd /opt/
 git clone https://aur.archlinux.org/yay-git.git
@@ -13,23 +13,25 @@ sudo chown -R kaikie:kaikie ./yay-git
 cd yay-git
 makepkg -si
 yay -S ttf-fantasque-sans-mono
+yay -S nerd-fonts-ubuntu-mono
 #Instalamos entorno de escritorio
 echo "Instalando entorno de escritorio"
 pacman -S qtile lightdm xorg-server -y
 systemctl enable lightdm
 pacman -S lightdm-gtk-greeter -y
-pacman -S xterm code feh picom fish -y
+pacman -S xterm code feh picom zsh -y
 pacman -S xorg-xinit -y
 #Cambios permanentes
-mv home/kaikie/ovdotfiles/.xprofile /home/kaikie/
-chmod u+x /home/kaikie/.xprofile
+mv ~/ovdotfiles/.xprofile ~
+chmod u+x /~/.xprofile
 #Alacritty
-mkdir /home/kaikie/.config/alacritty
-mv home/kaikie/ovdotfiles/alacritty.yml /home/kaikie/.config/alacritty
+mkdir ~/.config/alacritty
+mv ~/ovdotfiles/alacritty.yml ~/.config/alacritty
+cp -r ~/ovdotfiles/bars ~/.config/qtile 
 
 echo "Configurando qtile"
 
-FICHERO=/home/kaikie/.config/qtile/autostart.sh
+FICHERO=/~/.config/qtile/autostart.sh
 
 if [ -f $FICHERO ]
 then
