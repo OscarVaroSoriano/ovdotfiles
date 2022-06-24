@@ -70,7 +70,11 @@ for i, group in enumerate(groups):
         # Send window to workspace N
         Key([mod, "shift"], actual_key, lazy.window.togroup(group.name))
     ])
-
+layout_conf = {
+    'border_focus': '#F07178',
+    'border_width': 1,
+    'margin': 12
+}
 layouts = [
     
     layout.Max(),
@@ -78,7 +82,7 @@ layouts = [
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-     layout.MonadTall(),
+     layout.MonadTall(**layout_conf),
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
@@ -137,9 +141,71 @@ screens = [
                     padding=5,
                     background=["#f07178", "#f07178"],
                 ),
-                widget.Image(
-                    filename='~/.config/qtile/bars/bar2.png'
+                #widget.Image(
+                #    filename='~/.config/qtile/bars/bar2.png'
+                #),
+                widget.TextBox(
+                    text=' ',
+                    foreground=["#0f101a", "#0f101a"],
+                    background=["#a151d3", "#a151d3"],
                 ),
+                widget.Clock(
+                    format="%d/%m/%Y %a %I:%M %p",
+                    foreground=["#0f101a", "#0f101a"],
+                    background=["#a151d3", "#a151d3"],
+                    fontsize=15
+                ),
+            ],
+            24,
+            opacity=0.95
+            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
+            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+        ),
+    ),
+    Screen(
+        top=bar.Bar(
+            [
+                widget.GroupBox(
+                    foreground=["#f1ffff", "#f1ffff"],
+                    background=["#0f101a", "#0f101a"],
+                    font='UbuntuMono Nerd Font',
+                    fontsize=18,
+                    margin_y=3,
+                    margin_x=0,
+                    padding_y=5,
+                    borderwidth=1,
+                    active=["f1ffff","f1ffff"],
+                    inactive=["f1ffff","f1ffff"],
+                    rounded=False,
+                    highlight_method='block',
+                    this_current_screen_border=["F07178","F07178"],
+                    this_screen_border=["5c5c5c","5c5c5c"],
+                    other_current_screen_border=["0f101a","0f101a"],
+                    other_screen_border=["0f101a","0f101a"]
+                ),
+                widget.WindowName(
+                    foreground=["#f07178", "#f07178"],
+                    background=["#0f101a", "#0f101a"],
+                    fontsize=13,
+                    font='UbuntuMono Nerd Font Bold'
+                ),
+                widget.CurrentLayoutIcon(
+                    foreground=["#0f101a", "#0f101a"],
+                    background=["#f07178", "#f07178"],
+                    scale=0.65
+                ),
+                widget.CurrentLayout(
+                    foreground=["#0f101a", "#0f101a"],
+                    background=["#f07178", "#f07178"],
+                ),
+                widget.Sep(
+                    linewidth=0,
+                    padding=5,
+                    background=["#f07178", "#f07178"],
+                ),
+                #widget.Image(
+                #    filename='~/.config/qtile/bars/bar2.png'
+                #),
                 widget.TextBox(
                     text=' ',
                     foreground=["#0f101a", "#0f101a"],
@@ -182,7 +248,8 @@ floating_layout = layout.Floating(
         Match(wm_class="ssh-askpass"),  # ssh-askpass
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
-    ]
+    ],
+border_focus='#a151d3'
 )
 auto_fullscreen = True
 focus_on_window_activation = "smart"
